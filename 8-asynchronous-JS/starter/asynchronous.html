@@ -9,7 +9,55 @@
 <body>
     <h1>Asynchronous JavaScript</h1>
     <script>
-        
+        // const second = () => {
+        //     setTimeout(() => {
+        //         console.log('Async Hey there');
+        //     },5000);
+
+        // }
+
+        // const first = () => {
+        //     console.log('Hey there');
+        //     second();
+        //     console.log('The End');
+        // }
+
+        // first();
+
+        // function getRecipe(){
+        //     setTimeout(() => {
+        //     const recipeID = [523,883,432,974];
+        //     console.log(recipeID);
+        //         setTimeout((id)=>{
+        //             const recipe = {
+        //                 title: 'Fresh Tomato Paste',
+        //                 publisher: 'Jonas'
+        //             }
+        //             console.log(`${id}: ${recipe.title}`);
+        //             setTimeout(publisher => {
+        //                 console.log('MORE!');
+        //             },1500);
+        //         }, 1500, recipeID[2]);
+
+        //     },1500);
+        // }
+        // getRecipe();
+
+        const getIDs = new Promise((resolve, reject) => {
+            setTimeout(() =>{
+                reject([523,883,432,974]);
+            }, 2000);
+
+        });
+
+        getIDs.
+        then(IDs =>{
+            console.log(IDs);
+        }).catch(error =>{
+            console.log(error);
+        });
+
+
     </script>
 </body>
 </html>

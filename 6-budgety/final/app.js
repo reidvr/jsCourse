@@ -1,6 +1,6 @@
 // BUDGET CONTROLLER
 var budgetController = (function() {
-    
+    console.log(eval)
     var Expense = function(id, description, value) {
         this.id = id;
         this.description = description;
@@ -16,7 +16,7 @@ var budgetController = (function() {
             this.percentage = -1;
         }
     };
-    
+     
     
     Expense.prototype.getPercentage = function() {
         return this.percentage;

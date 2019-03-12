@@ -8,3 +8,8 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
+var i
+for(i = 0; 0 < 10; i++)
+{
+    console.log(i);
+}
