@@ -9,13 +9,14 @@ export default class Search{
         const corsProxy = `https://cors-anywhere.herokuapp.com/`;
         const key = '7f72908fb836ed1ca1773619e86b1d5d';
         try{
-            /*const result = await axios(`${corsProxy}https://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
+            // const result = await axios(`${corsProxy}https://www.food2fork.com/api/search?key=${key}&q=${this.query}`);
 
-            this.results = result.data.recipes;*/
+            // this.results = result.data.recipes;
+            
             this.results = await new Promise((resolve, reject) => {
-                let results = [];
+                
                 setTimeout(() => {
-                    results = [
+                    let results = [
                         {   
                             recipe_id: '23456',
                             image_url:'img/test-1.jpg',
@@ -32,11 +33,9 @@ export default class Search{
                     
                     resolve(results);
                 },2000);
-                
-               
+
             }); 
-            
-            
+
         }
         catch(error){
             alert(error);

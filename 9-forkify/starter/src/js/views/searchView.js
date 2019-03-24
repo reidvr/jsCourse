@@ -2,12 +2,6 @@ import {elements} from './base';
 
 export const getInput = () => elements.searchInput.value;
 
-/*const capLength = (string, maxLength) => {
-    let newString = string;
-    if(string.length > maxLength)
-        newString = `${string.slice(0,maxLength)}...`;
-    return newString;
-}*/
 
 const capLength = (string, maxLength = 17) => {
     if(string.length >= maxLength){
@@ -49,12 +43,16 @@ export const clearSearchInput = () => {
 
 export const clearSearchResults = () => {
     elements.searchResults.innerHTML = '';
-    
-
 }
 
-export const renderResults = recipes => {
-    recipes.forEach(renderRecipe);
+export const renderResults = (recipes, page, resPerPage = 10) => {
+    console.log(recipes);
+    let pageStartIndex = (resPerPage * page) - resPerPage;
+    for (let index = pageStartIndex; index < recipes.length; index++) {
+        renderRecipe();
+        
+    }
+    
     
 }
 

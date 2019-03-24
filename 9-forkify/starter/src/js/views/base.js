@@ -6,6 +6,9 @@ export const elements = {
     resultLink: document.querySelector('.results__link')
 };
 
+export const elementStrings = {
+    loader: '.loader'
+}
 export const renderLoader = parent => {
     const loader = `
         <div class="loader">
@@ -17,3 +20,10 @@ export const renderLoader = parent => {
     parent.insertAdjacentHTML('afterbegin', loader);
 };
 
+export const removeLoader = () => {
+    const loader = document.querySelector(elementStrings.loader);
+
+    loader.parentElement.removeChild(loader);
+
+
+}

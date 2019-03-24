@@ -1,6 +1,6 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
-import {elements, renderLoader} from './views/base';
+import {elements, renderLoader, removeLoader} from './views/base';
 import axios from 'axios';
 //Global state of the app
 // Search object
@@ -23,9 +23,9 @@ const controlSearch = async () => {
         renderLoader(elements.searchRes);
         //Search for recipes 
         await state.search.getResults();
-        
+        removeLoader();
         //Render result on UI
-        searchView.renderResults(state.search.results);
+        searchView.renderResults(state.search.results, 1);
     }
 }
 
@@ -36,12 +36,4 @@ elements.searchForm.addEventListener('submit', e => {
 
 
 
-const newSearch = function(event){
-    let value = event.target.firstChild.textContent;
 
-}
-
-//search.getResult();
-//console.log(search.result);
-
-var i = 2;
