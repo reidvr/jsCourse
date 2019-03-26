@@ -1,4 +1,4 @@
-import {elements} from './base';
+import {elements, elementStrings} from './base';
 
 export const getInput = () => elements.searchInput.value;
 
@@ -43,6 +43,7 @@ export const clearSearchInput = () => {
 
 export const clearSearchResults = () => {
     elements.searchResults.innerHTML = '';
+    elements.resultPages.innerHTML = '';
 }
 
 // const createButtons = (page, type) => {
@@ -68,16 +69,17 @@ export const clearSearchResults = () => {
 
 // }
 
-const createButtons = (page, type) => 
-    `<button class="btn-inline results__btn--${type}">
-        <span>Page ${type === 'prev' ? page - 1: page +1}</span>
+const createButtons = (page, type) => {
+    return `<button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1:page + 1}>
+        <span>Page ${type === 'prev' ? page - 1: page + 1}</span>
         <svg class="search__icon">
             <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left': 'right'}"></use>
         </svg>
     </button>`
-
+}
 const renderButtons = (page, numResults, resPerPage) => {
     const pages = Math.ceil(numResults / resPerPage);
+    
     let html = '';
     if(page === 1 && pages > 1){
         html = createButtons(page, 'next');
@@ -91,10 +93,11 @@ const renderButtons = (page, numResults, resPerPage) => {
 }
 
 
-export const renderResults = (recipes, page, resPerPage = 10) => {
+export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     const start = (resPerPage * page) - resPerPage;
-    const end = start + resPerPage;
     
+    const end = start + resPerPage;
+  
     recipes.slice(start, end).forEach(renderRecipe);
     renderButtons(page,recipes.length, resPerPage);
     // for (let index = pageStartIndex; index < pageEndIndex; index++) {

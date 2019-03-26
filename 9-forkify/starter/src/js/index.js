@@ -1,7 +1,9 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
-import {elements, renderLoader, removeLoader} from './views/base';
+import {elements, renderLoader, removeLoader, elementStrings} from './views/base';
 import axios from 'axios';
+import Recipe from './models/Recipe';
+
 //Global state of the app
 // Search object
 // Current recipe object
@@ -25,15 +27,32 @@ const controlSearch = async () => {
         await state.search.getResults();
         removeLoader();
         //Render result on UI
-        searchView.renderResults(state.search.results, 2);
+        searchView.renderResults(state.search.results);
+        
         
     }
 }
+
+//?? Why use event delegation over creating listeners on render?
+elements.resultPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline');
+    if(btn){
+        
+        const goToPage = parseInt(btn.dataset.goto);
+        searchView.clearSearchResults();
+        searchView.renderResults(state.search.results, goToPage);
+    }
+});
 
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
 });
+
+
+const r = new Recipe(46956);
+r.getRecipe();
+console.log('r: ', r);
 
 
 

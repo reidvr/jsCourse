@@ -4,12 +4,16 @@ export const elements = {
     searchForm: document.querySelector('.search'),
     searchRes: document.querySelector('.results'),
     resultLink: document.querySelector('.results__link'),
-    resultPages: document.querySelector('.results__pages')
+    resultPages: document.querySelector('.results__pages'),
+    recipe: document.querySelector('.recipe')
     
 };
 
 export const elementStrings = {
-    loader: '.loader'
+    loader: '.loader',
+    prevButton: '.results_btn--prev',
+    nextButton: '.results_btn--next'
+    
 }
 export const renderLoader = parent => {
     const loader = `
