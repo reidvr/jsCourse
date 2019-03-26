@@ -26,7 +26,7 @@ export default class Recipe{
 
     calcTime(){
         const nIng = this.ingredients.length;
-        const periods = Math.ceil(numIng /3);
+        const periods = Math.ceil(nIng /3);
         this.time = periods * 15;
     }
 
@@ -70,22 +70,3 @@ const myR = {
     }
 }
 
-const controlRecipe = () => {
-    const id = window.location.hash.replace('#', '');
-    console.log(id);
-    if(id){
-        //Prepare UI for changes
-
-        //Create new recipe object
-        const recipe = new Recipe(id);
-        //Get recipe data
-        recipe.getRecipe();
-        //Calculate servings and time
-        recipe.calcServings();
-        recipe.calcTime();
-        //Render recipe
-        
-    }
-
-};
-window.addEventListener('hashchange', controlRecipe);
