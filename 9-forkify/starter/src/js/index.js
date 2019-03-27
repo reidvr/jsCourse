@@ -29,14 +29,12 @@ const controlSearch = async () => {
         removeLoader();
         //Render result on UI
         searchView.renderResults(state.search.results);
-        
-        
     }
 }
 
 const controlRecipe = async () => {
     const id = window.location.hash.replace('#', '');
-    console.log(id);
+    
     if(id){
         //Prepare UI for changes
         recipeView.clearRecipe();
