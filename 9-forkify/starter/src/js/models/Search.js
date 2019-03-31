@@ -23,9 +23,9 @@ export default class Search{
                         },
                         {   
                             recipe_id: '469562',
-                            image_url:'img/test-1.jpg',
-                            title: 'Pasta with Tomato ...',
-                            publisher:'The Pioneer Woman'
+                            image_url:'img/test-2.jpg',
+                            title: 'Super pizza! ...',
+                            publisher:'Greg'
                         },
                         {   
                             recipe_id: '46956',
@@ -163,7 +163,7 @@ export default class Search{
                     ];
                     
                     resolve(results);
-                },2000);
+                },500);
 
             }); 
 

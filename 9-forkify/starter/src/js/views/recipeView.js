@@ -6,6 +6,9 @@ export const clearRecipe = () => {
 }
 
 export const renderRecipe = () => {
+
     elements.recipe.insertAdjacentHTML('afterbegin', `<h1>recipe made!</h1>`)
+
+    
     
 }

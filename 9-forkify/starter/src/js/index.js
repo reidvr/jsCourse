@@ -20,15 +20,23 @@ const controlSearch = async () => {
     if(query){
         //New search object and add to state
         state.search = new Search(query);
+
+        
         //Prepare UI for results
         searchView.clearSearchInput();
         searchView.clearSearchResults();
         renderLoader(elements.searchRes);
+        try{
         //Search for recipes 
         await state.search.getResults();
         removeLoader();
         //Render result on UI
         searchView.renderResults(state.search.results);
+        }
+        catch{
+            console.log('Something went wrong with the search');
+            removeLoader();
+        }
     }
 }
 
@@ -39,16 +47,24 @@ const controlRecipe = async () => {
         //Prepare UI for changes
         recipeView.clearRecipe();
         //Create new recipe object
-        const recipe = new Recipe(id);
-        //Get recipe data
-        await recipe.getRecipe();
-        //Calculate servings and time
-        recipe.calcServings();
-        recipe.calcTime();
-        //Render recipe
-        recipeView.renderRecipe();
+        state.recipe = new Recipe(id);
+        window.recipe = state.recipe;
+        try{
+            //Get recipe data
+            await state.recipe.getRecipe();
+            //Calculate servings and time
+            state.recipe.calcServings();
+            state.recipe.calcTime();
+            state.recipe.parseIngredients();
 
-        
+            //Render recipe
+            recipeView.renderRecipe();
+
+            
+        }
+        catch{
+            alert('Error processing recipe!');
+        }
     }
 
 };
@@ -57,7 +73,6 @@ const controlRecipe = async () => {
 elements.resultPages.addEventListener('click', e => {
     const btn = e.target.closest('.btn-inline');
     if(btn){
-        
         const goToPage = parseInt(btn.dataset.goto);
         searchView.clearSearchResults();
         searchView.renderResults(state.search.results, goToPage);
@@ -69,9 +84,13 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 });
 
-window.addEventListener('hashchange', controlRecipe);
+window.addEventListener('load', e => {
+    e.preventDefault();
+    controlSearch();
+});
 
 
+['hashchange', 'load'].forEach(eventName => window.addEventListener(eventName, controlRecipe));
 
 
 

@@ -20,7 +20,7 @@ export default class Recipe{
             
         } catch (error){
             console.log(error);
-            alert('Something went wrong =(');
+            alert('Something went wrong =( ');
         }
     }
 
@@ -33,6 +33,52 @@ export default class Recipe{
     calcServings() {
         this.calcServings = 4;
     }
+
+    parseIngredients() {
+        const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons','teaspoon', 'cups', 'pounds'];
+        const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
+
+        const newIngredients = this.ingredients.map(ingredient => {
+            
+            let parsedIngredient = ingredient.toLowerCase();
+
+            //1. Uniform units
+            unitsLong.forEach((unit, i) => {
+                parsedIngredient = parsedIngredient.replace(unit, unitsShort[i]);
+            });
+            
+            //2. Remove parentheses
+            parsedIngredient = parsedIngredient.replace(/ \([\s\S]*?\)/g, "");
+            
+            
+            //3. Parse ingredients into count, unit and ingredient
+            const arrIng = ingredient.split(' ');
+            const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
+
+            if(unitIndex > -1){
+                //Theres a unit
+
+
+
+            } else if(parseInt(arrIng[0])){
+                
+            } else if(unitIndex === -1){
+                //There is NO unit
+            }
+
+            return parsedIngredient;
+
+        });
+        this.ingredients = newIngredients;
+    }
+
+    // parseIngredients() {
+    //     const unitsLong = ['tablespoons', 'tablespoon', 'ounce', 'ounces', 'teaspoon','teaspoons', 'cups', 'pounds'];
+    //     const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
+    // }
+
+
+
 }
 
 const myR = { 

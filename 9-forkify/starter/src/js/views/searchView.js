@@ -95,14 +95,14 @@ const renderButtons = (page, numResults, resPerPage) => {
 
 export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     const start = (resPerPage * page) - resPerPage;
-    
+
     const end = start + resPerPage;
-  
+    
     recipes.slice(start, end).forEach(renderRecipe);
     renderButtons(page,recipes.length, resPerPage);
     // for (let index = pageStartIndex; index < pageEndIndex; index++) {
     //     renderRecipe(recipes[index]);
-        
+    
     // }
     
     
